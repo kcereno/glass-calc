@@ -3,42 +3,41 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [mainScreen, setMainScreen] = useState<string>('0');
-  const [smallScreen, setSmallScreen] = useState<string>('');
+  const [mainScreenVal, setMainScreenVal] = useState<string>('0');
+  const [smallScreenVal, setSmallScreenVal] = useState<string>('');
 
   const [currentCount, setCurrentCount] = useState<string>('0');
-  console.log('currentCount', currentCount);
+
   const [operation, setOperation] = useState<string>();
-  const handleNumberButtonClick = (e: any) => {
-    const enteredNumber = e.target.value;
 
-    if (mainScreen === '0') return setMainScreen(enteredNumber);
+  const handleNumberButtonClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    const target = e.target as HTMLButtonElement;
 
-    setMainScreen(mainScreen + enteredNumber);
+    const selectedNumber = target.value;
+
+    if (mainScreenVal === '0') {
+      setMainScreenVal(selectedNumber);
+    } else {
+      setMainScreenVal(mainScreenVal + selectedNumber);
+    }
   };
 
   const handleClearButtonClick = () => {
-    setMainScreen('0');
-    setSmallScreen('');
+    setMainScreenVal('0');
+    setSmallScreenVal('');
   };
 
-  const handleEqualButtonClick = () => {
-    setSmallScreen(currentCount + ' ' + operation + ' ' + mainScreen + ' =');
-  };
+  const handleEqualButtonClick = () => {};
 
-  const handleOperationButtonClick = (e: any) => {
-    const selectedOperation = e.target.value;
-    setOperation('+');
-    setCurrentCount(mainScreen);
-    setSmallScreen(mainScreen + ' ' + selectedOperation);
-    setMainScreen('0');
-  };
+  const handleOperationButtonClick = (e: any) => {};
 
   return (
     <div className="app">
       <div className="container">
-        <div className="screen screen--small">{smallScreen}</div>
-        <div className="screen screen--large">{mainScreen}</div>
+        <div className="screen screen--small">{smallScreenVal}</div>
+        <div className="screen screen--large">{mainScreenVal}</div>
         <button
           className="button"
           value="7"
