@@ -37,7 +37,6 @@
 .container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto;
 
   background: rgba(255, 255, 255, 0);
   border-radius: 16px;
@@ -55,17 +54,9 @@
   justify-content: end;
   color: white;
 
-  margin-right: 4px;
-}
-
-.screen--small {
-  padding: 10px 0;
-  font-size: 24px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  height: 30px;
-}
-
-.screen--large {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 10px;
   font-size: 50px;
 }
 
@@ -101,6 +92,7 @@
   background-color: rgba(250, 15, 15, 0.5);
   color: white;
   border-bottom-left-radius: 16px;
+  grid-column: 1/2;
 }
 
 .button--operation {
@@ -112,7 +104,7 @@
   background-color: rgba(0, 8, 255, 0.5);
   color: white;
   grid-column-start: 5;
-  grid-row: 5/7;
+  grid-row: 4/6;
   height: 160px;
   border-bottom-right-radius: 16px;
 }

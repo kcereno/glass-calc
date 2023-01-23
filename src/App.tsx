@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
   const [mainScreenVal, setMainScreenVal] = useState<string>('0');
-  const [smallScreenVal, setSmallScreenVal] = useState<string>('');
 
-  const [currentCount, setCurrentCount] = useState<string>('0');
+  const [firstNumber, setFirstNumber] = useState<number>(0);
+  const [secondNumber, setSecondNumber] = useState<number>(0);
+  const [count, setCount] = useState<number>(0);
+  console.log('App ~ count', count);
 
-  const [operation, setOperation] = useState<string>();
+  const [operation, setOperation] = useState<string>('+');
+
+  // utils
+
+  const calculate = (
+    firstNumber: number,
+    operation: string,
+    secondNumber: number
+  ) => {
+    if (operation === '+') return firstNumber + secondNumber;
+    if (operation === '-') return firstNumber - secondNumber;
+    if (operation === 'x') return firstNumber * secondNumber;
+    if (operation === '/') return firstNumber / secondNumber;
+  };
+
+  // Event Handlers
 
   const handleNumberButtonClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -26,17 +43,27 @@ function App() {
 
   const handleClearButtonClick = () => {
     setMainScreenVal('0');
-    setSmallScreenVal('');
+
+    setFirstNumber(0);
+    setCount(0);
   };
 
   const handleEqualButtonClick = () => {};
 
-  const handleOperationButtonClick = (e: any) => {};
+  const handleOperationButtonClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    const selectedOperation = (e.target as HTMLButtonElement).value;
+
+    const updatedFirstNumber = Number(mainScreenVal);
+    setFirstNumber(updatedFirstNumber);
+
+    setMainScreenVal('0');
+  };
 
   return (
     <div className="app">
       <div className="container">
-        <div className="screen screen--small">{smallScreenVal}</div>
         <div className="screen screen--large">{mainScreenVal}</div>
         <button
           className="button"
@@ -84,14 +111,14 @@ function App() {
         </button>
         <button
           className="button button--operation"
-          value=" x "
+          value="x"
           onClick={handleOperationButtonClick}
         >
           x
         </button>
         <button
           className="button button--operation"
-          value=" / "
+          value="/"
           onClick={handleOperationButtonClick}
         >
           ÷
@@ -120,7 +147,7 @@ function App() {
         <button
           className="button button--operation"
           onClick={handleOperationButtonClick}
-          value=" - "
+          value="-"
         >
           -
         </button>
