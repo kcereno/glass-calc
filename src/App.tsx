@@ -57,8 +57,6 @@ function App() {
 
     const updatedFirstNumber = Number(mainScreenVal);
     setFirstNumber(updatedFirstNumber);
-
-    setMainScreenVal('0');
   };
 
   return (

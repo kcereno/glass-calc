@@ -79,8 +79,7 @@
 }
 
 .button:hover {
-  background: inherit radial-gradient(circle, transparent 1%, inherit 1%)
-    center/15000%;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 .button:active {
   background-color: inherit;
@@ -95,8 +94,20 @@
   grid-column: 1/2;
 }
 
+.button--clear:hover {
+  background-color: rgba(250, 15, 15, 0.3);
+}
+
 .button--operation {
   background-color: rgba(92, 92, 92, 0.5);
+  color: white;
+}
+.button--operation:hover {
+  background-color: rgba(92, 92, 92, 0.3);
+}
+
+.button--operation-highlighted {
+  background-color: rgba(92, 92, 92, 0.8);
   color: white;
 }
 
@@ -107,6 +118,9 @@
   grid-row: 4/6;
   height: 160px;
   border-bottom-right-radius: 16px;
+}
+.button--equal:hover {
+  background-color: rgba(0, 8, 255, 0.3);
 }
 
 .button--misc {
