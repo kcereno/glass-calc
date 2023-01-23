@@ -37,6 +37,7 @@
 .container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
 
   background: rgba(255, 255, 255, 0);
   border-radius: 16px;
@@ -54,9 +55,17 @@
   justify-content: end;
   color: white;
 
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-right: 10px;
+  margin-right: 4px;
+}
+
+.screen--small {
+  padding: 10px 0;
+  font-size: 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 30px;
+}
+
+.screen--large {
   font-size: 50px;
 }
 
@@ -79,7 +88,8 @@
 }
 
 .button:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background: inherit radial-gradient(circle, transparent 1%, inherit 1%)
+    center/15000%;
 }
 .button:active {
   background-color: inherit;
@@ -91,23 +101,10 @@
   background-color: rgba(250, 15, 15, 0.5);
   color: white;
   border-bottom-left-radius: 16px;
-  grid-column: 1/2;
-}
-
-.button--clear:hover {
-  background-color: rgba(250, 15, 15, 0.3);
 }
 
 .button--operation {
   background-color: rgba(92, 92, 92, 0.5);
-  color: white;
-}
-.button--operation:hover {
-  background-color: rgba(92, 92, 92, 0.3);
-}
-
-.button--operation-highlighted {
-  background-color: rgba(92, 92, 92, 0.8);
   color: white;
 }
 
@@ -115,12 +112,9 @@
   background-color: rgba(0, 8, 255, 0.5);
   color: white;
   grid-column-start: 5;
-  grid-row: 4/6;
+  grid-row: 5/7;
   height: 160px;
   border-bottom-right-radius: 16px;
-}
-.button--equal:hover {
-  background-color: rgba(0, 8, 255, 0.3);
 }
 
 .button--misc {

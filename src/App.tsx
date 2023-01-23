@@ -4,10 +4,13 @@ import './App.css';
 
 function App() {
   const [mainScreenVal, setMainScreenVal] = useState<string>('0');
+  const [secondScreenVal, setSecondScreenVal] = useState<string>('');
 
   const [firstNumber, setFirstNumber] = useState<number>(0);
+  console.log('App ~ firstNumber', firstNumber);
   const [secondNumber, setSecondNumber] = useState<number>(0);
-  const [count, setCount] = useState<number>(0);
+  console.log('App ~ secondNumber', secondNumber);
+  const [count, setCount] = useState<number | null>(null);
   console.log('App ~ count', count);
 
   const [operation, setOperation] = useState<string>('+');
@@ -34,34 +37,47 @@ function App() {
 
     const selectedNumber = target.value;
 
-    if (mainScreenVal === '0') {
-      setMainScreenVal(selectedNumber);
-    } else {
-      setMainScreenVal(mainScreenVal + selectedNumber);
-    }
+    mainScreenVal === '0'
+      ? setMainScreenVal(selectedNumber)
+      : setMainScreenVal(mainScreenVal + selectedNumber);
   };
-
-  const handleClearButtonClick = () => {
-    setMainScreenVal('0');
-
-    setFirstNumber(0);
-    setCount(0);
-  };
-
-  const handleEqualButtonClick = () => {};
 
   const handleOperationButtonClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     const selectedOperation = (e.target as HTMLButtonElement).value;
 
-    const updatedFirstNumber = Number(mainScreenVal);
-    setFirstNumber(updatedFirstNumber);
+    let updatedCount = count;
+    let updatedSecondScreenVal = secondScreenVal;
+
+    if (!firstNumber) {
+      setFirstNumber(+mainScreenVal);
+      updatedSecondScreenVal = `${mainScreenVal} ${selectedOperation}`;
+    }
+
+    if (selectedOperation === '+') {
+      updatedCount = count! + +mainScreenVal;
+      updatedSecondScreenVal = `${updatedCount} ${selectedOperation}`;
+    }
+
+    setCount(updatedCount);
+    setSecondScreenVal(updatedSecondScreenVal);
+    setMainScreenVal('0');
   };
+
+  const handleClearButtonClick = () => {
+    setMainScreenVal('0');
+    setSecondScreenVal('');
+    setFirstNumber(0);
+    setCount(0);
+  };
+
+  const handleEqualButtonClick = () => {};
 
   return (
     <div className="app">
       <div className="container">
+        <div className="screen screen--small">{secondScreenVal}</div>
         <div className="screen screen--large">{mainScreenVal}</div>
         <button
           className="button"
