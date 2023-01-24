@@ -64,7 +64,16 @@ function App() {
     setCount(null);
   };
 
-  const handleEqualButtonClick = () => {};
+  const handleEqualButtonClick = () => {
+    if (count && operation) {
+      const updatedCount = calculate(count, operation, +mainScreenVal);
+      setCount(updatedCount);
+
+      setMainScreenVal(updatedCount.toString());
+      setSecondScreenVal(secondScreenVal + ' ' + mainScreenVal + ' = ');
+      setOperation(null);
+    }
+  };
 
   return (
     <div className="app">
