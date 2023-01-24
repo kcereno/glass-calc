@@ -5,15 +5,8 @@ import './App.css';
 function App() {
   const [mainScreenVal, setMainScreenVal] = useState<string>('0');
   const [secondScreenVal, setSecondScreenVal] = useState<string>('');
-
-  const [firstNumber, setFirstNumber] = useState<number | null>(null);
-
-  const [secondNumber, setSecondNumber] = useState<number>(0);
-
   const [count, setCount] = useState<number | null>(null);
-  console.log('App ~ count', count);
   const [operation, setOperation] = useState<string | null>(null);
-  console.log('App ~ operation', operation);
 
   // utils
 
@@ -25,9 +18,8 @@ function App() {
     if (operation === '+') return firstNumber + secondNumber;
     if (operation === '-') return firstNumber - secondNumber;
     if (operation === 'x') return firstNumber * secondNumber;
-    if (operation === '/') return firstNumber / secondNumber;
 
-    return 0;
+    return firstNumber / secondNumber;
   };
 
   // Event Handlers
@@ -50,16 +42,17 @@ function App() {
     const selectedOperation = (e.target as HTMLButtonElement).value;
 
     let updatedSecondScreenVal = secondScreenVal;
+    let updatedCount = count;
 
     if (count && operation) {
-      const updatedCount = calculate(count, operation, +mainScreenVal);
-      setCount(updatedCount);
+      updatedCount = calculate(count, operation, +mainScreenVal);
       updatedSecondScreenVal = `${updatedCount} ${selectedOperation}`;
     } else {
-      setCount(+mainScreenVal);
+      updatedCount = +mainScreenVal;
       updatedSecondScreenVal = `${mainScreenVal} ${selectedOperation}`;
     }
 
+    setCount(updatedCount);
     setOperation(selectedOperation);
     setSecondScreenVal(updatedSecondScreenVal);
     setMainScreenVal('0');
@@ -68,7 +61,6 @@ function App() {
   const handleClearButtonClick = () => {
     setMainScreenVal('0');
     setSecondScreenVal('');
-    setFirstNumber(null);
     setCount(null);
   };
 
