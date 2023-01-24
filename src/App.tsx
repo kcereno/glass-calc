@@ -6,14 +6,14 @@ function App() {
   const [mainScreenVal, setMainScreenVal] = useState<string>('0');
   const [secondScreenVal, setSecondScreenVal] = useState<string>('');
 
-  const [firstNumber, setFirstNumber] = useState<number>(0);
-  console.log('App ~ firstNumber', firstNumber);
+  const [firstNumber, setFirstNumber] = useState<number | null>(null);
+
   const [secondNumber, setSecondNumber] = useState<number>(0);
-  console.log('App ~ secondNumber', secondNumber);
+
   const [count, setCount] = useState<number | null>(null);
   console.log('App ~ count', count);
-
-  const [operation, setOperation] = useState<string>('+');
+  const [operation, setOperation] = useState<string | null>(null);
+  console.log('App ~ operation', operation);
 
   // utils
 
@@ -21,11 +21,13 @@ function App() {
     firstNumber: number,
     operation: string,
     secondNumber: number
-  ) => {
+  ): number => {
     if (operation === '+') return firstNumber + secondNumber;
     if (operation === '-') return firstNumber - secondNumber;
     if (operation === 'x') return firstNumber * secondNumber;
     if (operation === '/') return firstNumber / secondNumber;
+
+    return 0;
   };
 
   // Event Handlers
@@ -47,20 +49,18 @@ function App() {
   ) => {
     const selectedOperation = (e.target as HTMLButtonElement).value;
 
-    let updatedCount = count;
     let updatedSecondScreenVal = secondScreenVal;
 
-    if (!firstNumber) {
-      setFirstNumber(+mainScreenVal);
+    if (count && operation) {
+      const updatedCount = calculate(count, operation, +mainScreenVal);
+      setCount(updatedCount);
+      updatedSecondScreenVal = `${updatedCount} ${selectedOperation}`;
+    } else {
+      setCount(+mainScreenVal);
       updatedSecondScreenVal = `${mainScreenVal} ${selectedOperation}`;
     }
 
-    if (selectedOperation === '+') {
-      updatedCount = count! + +mainScreenVal;
-      updatedSecondScreenVal = `${updatedCount} ${selectedOperation}`;
-    }
-
-    setCount(updatedCount);
+    setOperation(selectedOperation);
     setSecondScreenVal(updatedSecondScreenVal);
     setMainScreenVal('0');
   };
@@ -68,8 +68,8 @@ function App() {
   const handleClearButtonClick = () => {
     setMainScreenVal('0');
     setSecondScreenVal('');
-    setFirstNumber(0);
-    setCount(0);
+    setFirstNumber(null);
+    setCount(null);
   };
 
   const handleEqualButtonClick = () => {};
