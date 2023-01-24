@@ -7,6 +7,7 @@ function App() {
   const [secondScreenVal, setSecondScreenVal] = useState<string>('');
   const [count, setCount] = useState<number | null>(null);
   const [operation, setOperation] = useState<string | null>(null);
+  const [storedNumber, setStoredNumber] = useState<number | null>(null);
 
   // utils
 
@@ -62,6 +63,7 @@ function App() {
     setMainScreenVal('0');
     setSecondScreenVal('');
     setCount(null);
+    setStoredNumber(null);
   };
 
   const handleEqualButtonClick = () => {
@@ -78,6 +80,14 @@ function App() {
   const handleNegativeButtonClick = () => {
     const updatedMainScreenVal = '-' + mainScreenVal;
     setMainScreenVal(updatedMainScreenVal);
+  };
+
+  const handleMemoryStoreButtonClick = () => {
+    if (!storedNumber) {
+      setStoredNumber(+mainScreenVal);
+    } else {
+      setMainScreenVal(storedNumber.toString());
+    }
   };
 
   return (
@@ -112,7 +122,12 @@ function App() {
         >
           +/-
         </button>
-        <button className="button button--misc">MR</button>
+        <button
+          className="button button--misc"
+          onClick={handleMemoryStoreButtonClick}
+        >
+          {storedNumber ? 'MR' : 'MS'}
+        </button>
         <button
           className="button"
           value="4"
