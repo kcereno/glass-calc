@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
@@ -8,9 +7,9 @@ function App() {
   const [count, setCount] = useState<number | null>(null);
   const [operation, setOperation] = useState<string | null>(null);
   const [storedNumber, setStoredNumber] = useState<number | null>(null);
+  const [endOfCalculation, setEndOfCalculation] = useState<boolean>(false);
 
-  // utils
-
+  // Helper Functions
   const calculate = (
     firstNumber: number,
     operation: string,
@@ -24,13 +23,20 @@ function App() {
   };
 
   // Event Handlers
-
   const handleNumberButtonClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     const target = e.target as HTMLButtonElement;
 
     const selectedNumber = target.value;
+
+    if (endOfCalculation) {
+      setMainScreenVal(selectedNumber);
+      setEndOfCalculation(false);
+      setCount(null);
+      setSecondScreenVal('');
+      return;
+    }
 
     mainScreenVal === '0'
       ? setMainScreenVal(selectedNumber)
@@ -44,6 +50,8 @@ function App() {
 
     let updatedSecondScreenVal = secondScreenVal;
     let updatedCount = count;
+
+    if (endOfCalculation) setEndOfCalculation(false);
 
     if (count && operation) {
       updatedCount = calculate(count, operation, +mainScreenVal);
@@ -74,6 +82,7 @@ function App() {
       setMainScreenVal(updatedCount.toString());
       setSecondScreenVal(secondScreenVal + ' ' + mainScreenVal + ' = ');
       setOperation(null);
+      setEndOfCalculation(true);
     }
   };
 
