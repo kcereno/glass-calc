@@ -75,6 +75,11 @@ function App() {
     }
   };
 
+  const handleNegativeButtonClick = () => {
+    const updatedMainScreenVal = '-' + mainScreenVal;
+    setMainScreenVal(updatedMainScreenVal);
+  };
+
   return (
     <div className="app">
       <div className="container">
@@ -101,7 +106,12 @@ function App() {
         >
           9
         </button>
-        <button className="button button--misc">+/-</button>
+        <button
+          className="button button--misc"
+          onClick={handleNegativeButtonClick}
+        >
+          +/-
+        </button>
         <button className="button button--misc">MR</button>
         <button
           className="button"
