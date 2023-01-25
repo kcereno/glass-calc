@@ -139,3 +139,32 @@
 .button--misc:hover {
   background-color: rgba(161, 161, 161, 0.8);
 }
+
+@media screen and (max-width: 460px) {
+  .button {
+    height: 60px;
+    width: 60px;
+    font-size: 16px;
+  }
+  .screen--small {
+    font-size: 20px;
+  }
+  .screen--large {
+    font-size: 40px;
+  }
+  .button--equal {
+    height: 120px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .button {
+    height: 50px;
+    width: 50px;
+    font-size: 16px;
+  }
+
+  .button--equal {
+    height: 100px;
+  }
+}
