@@ -88,8 +88,7 @@
 }
 
 .button:hover {
-  background: inherit radial-gradient(circle, transparent 1%, inherit 1%)
-    center/15000%;
+  background: rgba(255, 255, 255, 0.8);
 }
 .button:active {
   background-color: inherit;
@@ -101,6 +100,10 @@
   background-color: rgba(250, 15, 15, 0.5);
   color: white;
   border-bottom-left-radius: 16px;
+}
+
+.button--clear:hover {
+  background-color: rgba(250, 15, 15, 0.8);
 }
 
 .button--operation {
@@ -117,7 +120,15 @@
   border-bottom-right-radius: 16px;
 }
 
+.button--equal:hover {
+  background-color: rgba(0, 8, 255, 0.8);
+}
+
 .button--misc {
   background-color: rgba(161, 161, 161, 0.5);
   color: white;
+}
+
+.button--misc:hover {
+  background-color: rgba(161, 161, 161, 0.8);
 }
