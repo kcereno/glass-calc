@@ -54,19 +54,23 @@
   align-items: flex-end;
   justify-content: end;
   color: white;
-
-  margin-right: 4px;
 }
 
 .screen--small {
-  padding: 10px 0;
+  padding-top: 10px;
   font-size: 24px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
   height: 30px;
 }
 
 .screen--large {
   font-size: 50px;
+}
+
+.screen__text {
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 /* Buttons */

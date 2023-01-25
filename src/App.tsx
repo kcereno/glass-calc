@@ -102,8 +102,12 @@ function App() {
   return (
     <div className="app">
       <div className="container">
-        <div className="screen screen--small">{secondScreenVal}</div>
-        <div className="screen screen--large">{mainScreenVal}</div>
+        <div className="screen screen--small">
+          <span className="screen__text">{secondScreenVal}</span>
+        </div>
+        <div className="screen screen--large">
+          <span className="screen__text">{mainScreenVal}</span>
+        </div>
         <button
           className="button"
           value="7"
