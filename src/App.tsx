@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
@@ -8,6 +8,12 @@ function App() {
   const [operation, setOperation] = useState<string | null>(null);
   const [storedNumber, setStoredNumber] = useState<number | null>(null);
   const [endOfCalculation, setEndOfCalculation] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (mainScreenVal.length > 10) {
+      setMainScreenVal(mainScreenVal.slice(0, 10));
+    }
+  }, [mainScreenVal]);
 
   // Helper Functions
   const calculate = (
