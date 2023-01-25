@@ -93,7 +93,12 @@ function App() {
   };
 
   const handleNegativeButtonClick = () => {
-    const updatedMainScreenVal = '-' + mainScreenVal;
+    let updatedMainScreenVal;
+
+    mainScreenVal[0] === '-'
+      ? (updatedMainScreenVal = mainScreenVal.slice(1))
+      : (updatedMainScreenVal = '-' + mainScreenVal);
+
     setMainScreenVal(updatedMainScreenVal);
   };
 
