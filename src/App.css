@@ -11,6 +11,7 @@
 
 .app {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -140,6 +141,12 @@
   background-color: rgba(161, 161, 161, 0.8);
 }
 
+.credit-text {
+  margin-top: 40px;
+  font-size: 12px;
+  color: white;
+}
+
 @media screen and (max-width: 460px) {
   .button {
     height: 60px;
@@ -167,4 +174,7 @@
   .button--equal {
     height: 100px;
   }
+}
+
+.credit-text {
 }

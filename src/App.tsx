@@ -243,6 +243,7 @@ function App() {
           +
         </button>
       </div>
+      <div className="credit-text">Karl Cereno {new Date().getFullYear()}</div>
     </div>
   );
 }
